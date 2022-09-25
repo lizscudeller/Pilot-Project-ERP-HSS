@@ -1,0 +1,178 @@
+﻿@model List<Inventory.Web.Models.ProviderViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = "MM Provider";
+    ViewBag.List = Model;
+    
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/Provider.css" rel="stylesheet" />
+    <style>
+        .dialog > .modal-dialog {
+            width: 700px !important;
+        }
+
+        .modal-body {
+            height: 550px;
+            overflow-y: scroll;
+        }
+    </style>
+}
+@section TitleGrid{
+    <th><span class="column-ordenation" data-campo="name">Name</span></th>
+    <th><span class="column-ordenation" data-campo="phone">Phone</span></th>
+    <th><span class="column-ordenation" data-campo="contact">Contact</span></th>
+    <th><span class="column-ordenation" data-campo="active">Active</span></th>
+    <th>Action</th>
+}
+
+
+@section RegisterInputs{
+
+    <div class="row">
+        <div class="col-md-9">
+            @Html.Label("txt_name", "Name", new { @class = "control-label" })
+            @Html.TextBox("txt_name", null, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3" style="line-height: 2.2em">
+            <div class="form-check">
+                @Html.RadioButton("cbx_person", (int)Inventory.Web.Models.TypePerson.LegalPerson, new { id = "cbx_legal_person", @class = "form-check-input" })
+                @Html.Label("cbx_legal_person", "Legal Person", new { @class = "form-check-label" })
+            </div>
+            <div class="form-check">
+                @Html.RadioButton("cbx_person", (int)Inventory.Web.Models.TypePerson.NaturalPerson, new { id = "cbx_natural_person", @class = "form-check-input" })
+                @Html.Label("cbx_natural_person", "Natural Person", new { @class = "form-check-label" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("txt_doc_num", "Doc Number", new { @class = "control-label" })
+            @Html.TextBox("txt_doc_num", null, new { @class = "form-control" })
+        </div>
+        <div class="col-md-8">
+            <div id="container_corporate_name">
+                @Html.Label("txt_corporate_name", "Corporate Name", new { @class = "control-label" })
+                @Html.TextBox("txt_corporate_name", null, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("txt_phone", "Phone", new { @class = "control-label" })
+            @Html.TextBox("txt_phone", null, new { @class = "form-control" })
+        </div>
+        <div class="col-md-8">
+            @Html.Label("txt_contact", "Contact", new { @class = "control-label" })
+            @Html.TextBox("txt_contact", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Address</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.Label("txt_address", "Address", new { @class = "control-label" })
+                            @Html.TextBox("txt_address", null, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("txt_number", "Number", new { @class = "control-label" })
+                            @Html.TextBox("txt_number", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            @Html.Label("txt_instruction", "Instruction", new { @class = "control-label" })
+                            @Html.TextBox("txt_instruction", null, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("txt_postal_code", "Postal / Zip Code", new { @class = "control-label" })
+                            @Html.TextBox("txt_postal_code", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.Label("ddl_country", "Country", new { @class = "control-label" })
+                            @Html.DropDownList("ddl_country", new SelectList(ViewBag.Countries, "Id", "Name"), new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.Label("ddl_province", "Province / State", new { @class = "control-label" })
+                            @Html.DropDownList("ddl_province", new SelectList(""), new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.Label("ddl_city", "City", new { @class = "control-label" })
+                            @Html.DropDownList("ddl_city", new SelectList(""), new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-check">
+                @Html.CheckBox("cbx_active", new { @class = "form-check-input" })
+                @Html.Label("cbx_active", "Active", new { @class = "form-check-label" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueProvider", "RegisterProvider")';
+        var url_delete = '@Url.Action("DeleteProvider", "RegisterProvider")';
+        var url_save = '@Url.Action("SaveProvider", "RegisterProvider")';
+        var url_page_click = '@Url.Action("ProviderPage", "RegisterProvider")';
+        var url_filter = '@Url.Action("ProviderPage", "RegisterProvider")';
+        var url_len_page_change = '@Url.Action("ProviderPage", "RegisterProvider")';
+        var url_list_provinces = '@Url.Action("RescueProvicesbyCountry", "RegisterProvince")';
+        var url_list_cities = '@Url.Action("RescueCitiesbyProvinces", "RegisterCity")';
+
+        var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    </script>
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ Name }}</td>
+            <td>{{ Phone }}</td>
+            <td>{{ Contact }}</td>
+            <td>{{ #Active }}YES{{ /Active }}{{ ^Active }}NO{{ /Active }}</td>
+            <td>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+    <script src="~/Scripts/Register/Provider.js"></script>
+
+}

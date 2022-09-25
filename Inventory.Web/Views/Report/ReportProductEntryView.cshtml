@@ -1,0 +1,79 @@
+﻿@model List<Inventory.Web.Models.ReportProductEntryViewModel>
+@{
+    Layout = "";
+    //ViewBag.Title = " MM Report Product Entry";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <title>MM Report Stock Position</title>
+    @Styles.Render("~/Content/css")
+
+    <style>
+        table th:nth-child(1) {
+            width: 10%;
+        }
+
+        table td:nth-child(1) {
+            text-align: right;
+        }
+        table th:nth-child(2) {
+            width: 15%;
+        }
+
+        table td:nth-child(2) {
+            text-align: left;
+        }
+
+        table th:nth-child(3) {
+            width: 25%;
+        }
+
+        table td:nth-child(3) {
+            text-align: left;
+        }
+
+        table th:nth-child(4) {
+            width: 25%;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="col-md-12 text-center">
+        <img src="~/Content/Images/logo.png" style="height: 140px" />
+        <h3>Report Product Entry</h3>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Entry #</th>
+                <th>Provider</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        @{ 
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Date</td>
+                    <td>@item.EntryNumber</td>
+                    <td>@item.NameProvider</td>
+                    <td>@item.NameProduct</td>
+                    <td>@item.QuantityProduct</td>
+                    <td>@item.UserName</td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
+

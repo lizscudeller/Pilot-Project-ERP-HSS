@@ -1,0 +1,129 @@
+﻿@model List<Inventory.Web.Models.EmployeeViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = " HR New Employee";
+    ViewBag.List = Model;
+
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/Employee.css" rel="stylesheet" />
+    <style>
+        .dialog > .modal-dialog {
+            width: 800px !important;
+        }
+    </style>
+}
+
+
+@section TitleGrid{
+    <th><span class="column-ordenation" data-campo="legal_name">Legal Name</span></th>
+    <th><span class="column-ordenation" data-campo="legal_surname">Legal Surname</span></th>
+    <th><span class="column-ordenation" data-campo="active">Active</span></th>
+    <th>Action</th>
+}
+
+
+@section RegisterInputs{
+
+    <!-- Tab Buttons -->
+    <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#_FirstTab" role="tab" data-toggle="tab">Personal</a>
+        </li>
+        <li>
+            <a href="#_SecondTab" role="tab" data-toggle="tab">Address & Contact</a>
+        </li>
+        <li>
+            <a href="#_ThirdTab" role="tab" data-toggle="tab">Additional Info</a>
+        </li>
+        <li>
+            <a href="#_FourthTab" role="tab" data-toggle="tab">Payroll Info</a>
+        </li>
+        <li>
+            <a href="#_FifthTab" role="tab" data-toggle="tab">Employment Info</a>
+        </li>
+        <li>
+            <a href="#_SixthTab" role="tab" data-toggle="tab">Worker's Comp</a>
+        </li>
+
+    </ul>
+
+    <!-- Tab Content Containers -->
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="_FirstTab">
+            <!-- Call partial view to load initial page load data -->
+            @Html.Partial("_FirstTab")
+        </div>
+        <div class="tab-pane fade" id="_SecondTab">
+            @Html.Partial("_SecondTab")
+
+        </div>
+        <div class="tab-pane fade" id="_ThirdTab">
+            @Html.Partial("_ThirdTab")
+
+        </div>
+        <div class="tab-pane fade" id="_FourthTab">
+            @Html.Partial("_FourthTab")
+
+        </div>
+        <div class="tab-pane fade" id="_FifthTab">
+            @Html.Partial("_FifthTab")
+
+        </div>
+        <div class="tab-pane fade" id="_SixthTab">
+            @Html.Partial("_SixthTab")
+
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueEmployee", "RegisterNewEmployee")';
+        var url_delete = '@Url.Action("DeleteEmployee", "RegisterNewEmployee")';
+        var url_save = '@Url.Action("SaveEmployee", "RegisterNewEmployee")';
+        var url_page_click = '@Url.Action("EmployeePage", "RegisterNewEmployee")';
+        var url_filter = '@Url.Action("EmployeePage", "RegisterNewEmployee")';
+        var url_len_page_change = '@Url.Action("EmployeePage", "RegisterNewEmployee")';
+
+        var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    </script>
+    <script src="~/Scripts/Register/Employee.js"></script>
+
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ LegalName }}</td>
+            <td>{{ LegalSurname }}</td>
+            <td>{{ #Active }}YES{{ /Active }}{{ ^Active }}NO{{ /Active }}</td>
+            <td>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+
+
+}

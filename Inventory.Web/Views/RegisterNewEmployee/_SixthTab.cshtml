@@ -1,0 +1,15 @@
+﻿<div class="row" style="margin-top: 20px">
+    <div class="col-md-12">
+        <p>
+            Click the drop-down arrow and select a default code for this employee. <br />
+            If this employee is exempt from Worker's Comp, choose "Exempt" from the list.
+        </p>
+    </div>
+    <div class="col-md-5">
+        @Html.Label("txt_comp_code", "Assign Workers Comp Code", new { @class = "control-label" })
+        @Html.TextBox("txt_comp_code", null, new { @class = "form-control" })
+    </div>
+    <div class="col-md-12" style="margin-top:10px">
+    <a href="#">Learn about Worker's Comp Payment.</a>
+    </div>
+</div>

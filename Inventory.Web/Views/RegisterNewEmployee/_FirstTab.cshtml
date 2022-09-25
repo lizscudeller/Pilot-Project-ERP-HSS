@@ -1,0 +1,123 @@
+﻿<div class="row" style="margin-top: 20px">
+    <div class="col-md-12">
+        <div>
+            @Html.CheckBox("cbx_active", new { @class = "form-check-input" })
+            @Html.Label("cbx_active", "Active", new { @class = "form-check-label" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        @Html.Label("txt_legal_name", "Legal Name", new { @class = "control-label" })
+        @Html.TextBox("txt_legal_name", null, new { @class = "form-control" })
+    </div>
+    <div class="col-md-6">
+        @Html.Label("txt_legal_surname", "Legal Surname", new { @class = "control-label" })
+        @Html.TextBox("txt_legal_surname", null, new { @class = "form-control" })
+    </div>
+    <div class="col-md-3" style="line-height: 2.2em">
+        <div class="form-check">
+            @Html.RadioButton("cbx_person", (int)Inventory.Web.Models.EmployeeTypePerson.Employee, new { id = "cbx_employee", @class = "form-check-input" })
+            @Html.Label("cbx_employee", "Employee", new { @class = "form-check-label" })
+        </div>
+        <div class="form-check">
+            @Html.RadioButton("cbx_person", (int)Inventory.Web.Models.EmployeeTypePerson.Contractor, new { id = "cbx_contractor", @class = "form-check-input" })
+            @Html.Label("cbx_contractor", "Contractor", new { @class = "form-check-label" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        @Html.Label("txt_print_name", "Print on checks as", new { @class = "control-label" })
+        @Html.TextBox("txt_print_name", null, new { @class = "form-control" })
+    </div>
+    <div class="col-md-6">
+        @Html.Label("txt_ssn", "Social Security No.", new { @class = "control-label" })
+        @Html.TextBox("txt_ssn", null, new { @class = "form-control", type = "number" })
+    </div>
+    <div class="col-md-3">
+        @Html.Label("ddl_gender", "Gender", new { @class = "control-label" })
+        @Html.DropDownList("ddl_gender", (IEnumerable<SelectListItem>)ViewBag.Gender, new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        @Html.Label("txt_date_birth", "Date of Birth", new { @class = "control-label" })
+        @Html.TextBox("txt_date_birth", null, new { @class = "form-control", type = "date" })
+    </div>
+    <div class="col-md-3">
+        @Html.Label("ddl_marital_status", "Marital Status", new { @class = "control-label" })
+        @Html.DropDownList("ddl_marital_status", (IEnumerable<SelectListItem>)ViewBag.Marital, new { @class = "form-control" })
+    </div>
+    <div class="col-md-3">
+        @Html.Label("ddl_us_citizen", "U.S. Citizen", new { @class = "control-label" })
+        @Html.DropDownList("ddl_us_citizen", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+    </div>
+    <div class="col-md-3">
+        @Html.Label("ddl_ethnicity", "Ethnicity", new { @class = "control-label" })
+        @Html.DropDownList("ddl_ethnicity", (IEnumerable<SelectListItem>)ViewBag.Ethnicity, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Disability</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.Label("ddl_disability", "Disabled", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_disability", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-9">
+                        @Html.Label("txt_disability_description", "Disability Description", new { @class = "control-label" })
+                        @Html.TextBox("txt_disability_description", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">I-9 Form</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.Label("ddl_i9_form", "In File", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_i9_form", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-9">
+                        @Html.Label("txt_work_expires", "Work Authorization Expires", new { @class = "control-label" })
+                        @Html.TextBox("txt_work_expires", null, new { @class = "form-control", type = "date" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 5px">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Military</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.Label("ddl_us_veteran", "U.S. Veteran", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_us_veteran", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+
+                    </div>
+                    <div class="col-md-9">
+                        @Html.Label("txt_veteran_status", "Status", new { @class = "control-label" })
+                        @Html.TextBox("txt_veteran_status", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Register/Employee.js"></script>

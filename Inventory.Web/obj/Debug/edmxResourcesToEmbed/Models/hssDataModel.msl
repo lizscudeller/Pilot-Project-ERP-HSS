@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="city">
+      <EntityTypeMapping TypeName="Model.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="id_province" ColumnName="id_province" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="country">
+      <EntityTypeMapping TypeName="Model.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entry_product">
+      <EntityTypeMapping TypeName="Model.entry_product">
+        <MappingFragment StoreEntitySet="entry_product">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="quant" ColumnName="quant" />
+          <ScalarProperty Name="id_provider" ColumnName="id_provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inventory_stock">
+      <EntityTypeMapping TypeName="Model.inventory_stock">
+        <MappingFragment StoreEntitySet="inventory_stock">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="storage_quant" ColumnName="storage_quant" />
+          <ScalarProperty Name="quant_inventory" ColumnName="quant_inventory" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product">
+      <EntityTypeMapping TypeName="Model.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cost_value" ColumnName="cost_value" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="storage_quant" ColumnName="storage_quant" />
+          <ScalarProperty Name="id_unit_measure" ColumnName="id_unit_measure" />
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+          <ScalarProperty Name="id_brand" ColumnName="id_brand" />
+          <ScalarProperty Name="id_provider" ColumnName="id_provider" />
+          <ScalarProperty Name="id_storage_location" ColumnName="id_storage_location" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product_brand">
+      <EntityTypeMapping TypeName="Model.product_brand">
+        <MappingFragment StoreEntitySet="product_brand">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product_group">
+      <EntityTypeMapping TypeName="Model.product_group">
+        <MappingFragment StoreEntitySet="product_group">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product_output">
+      <EntityTypeMapping TypeName="Model.product_output">
+        <MappingFragment StoreEntitySet="product_output">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="quant" ColumnName="quant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provider">
+      <EntityTypeMapping TypeName="Model.provider">
+        <MappingFragment StoreEntitySet="provider">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="corporate_name" ColumnName="corporate_name" />
+          <ScalarProperty Name="doc_num" ColumnName="doc_num" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="instruction" ColumnName="instruction" />
+          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+          <ScalarProperty Name="id_country" ColumnName="id_country" />
+          <ScalarProperty Name="id_province" ColumnName="id_province" />
+          <ScalarProperty Name="id_city" ColumnName="id_city" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="province">
+      <EntityTypeMapping TypeName="Model.province">
+        <MappingFragment StoreEntitySet="province">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pcode" ColumnName="pcode" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="id_country" ColumnName="id_country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="role">
+      <EntityTypeMapping TypeName="Model.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="storage_location">
+      <EntityTypeMapping TypeName="Model.storage_location">
+        <MappingFragment StoreEntitySet="storage_location">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="unit_measure">
+      <EntityTypeMapping TypeName="Model.unit_measure">
+        <MappingFragment StoreEntitySet="unit_measure">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="initials" ColumnName="initials" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Model.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="role_users" TypeName="Model.role_users" StoreEntitySet="role_users">
+      <EndProperty Name="role">
+        <ScalarProperty Name="id" ColumnName="id_role" />
+      </EndProperty>
+      <EndProperty Name="users">
+        <ScalarProperty Name="id" ColumnName="id_users" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

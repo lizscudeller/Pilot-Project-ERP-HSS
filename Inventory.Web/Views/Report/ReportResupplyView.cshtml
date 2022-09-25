@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = " MM Resupply";
+}
+
+@model List<Inventory.Web.Models.ReportResupplyViewModel>
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Resupply</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        table th:nth-child(1) {
+            width: 10%;
+        }
+
+        table td:nth-child(1) {
+            text-align: right;
+        }
+
+        table td:nth-child(2) {
+            text-align: left;
+        }
+
+        table th:nth-child(3),
+        table th:nth-child(4) {
+            width: 10%;
+        }
+
+        table td:nth-child(3),
+        table td:nth-child(4) {
+            text-align: right;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-md-12 text-center">
+        <img src="~/Content/Images/logo.png" style="height: 80px" />
+        <h3>Resupply</h3>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Purchase</th>
+            </tr>
+        </thead>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CodeProduct</td>
+                    <td>@item.NameProduct</td>
+                    <td>@item.QuantityProduct</td>
+                    <td>@item.Purchase</td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>

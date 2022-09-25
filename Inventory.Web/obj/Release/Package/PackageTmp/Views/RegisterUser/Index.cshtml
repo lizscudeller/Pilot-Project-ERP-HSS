@@ -1,0 +1,90 @@
+﻿@model List<Inventory.Web.Models.UserViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = "User";
+    ViewBag.List = Model;
+
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/User.css" rel="stylesheet" />
+}
+
+@section TitleGrid{
+    <th><span class="column-ordenation" data-campo="name">Name</span></th>
+    <th><span class="column-ordenation" data-campo="login">Login</span></th>
+    <th>Action</th>
+}
+
+@section RegisterInputs{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_name", "Name", new { @class = "control-label" })
+            @Html.TextBox("txt_name", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_email", "Email", new { @class = "control-label" })
+            @Html.TextBox("txt_email", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_login", "Login", new { @class = "control-label" })
+            @Html.TextBox("txt_login", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_password", "Password", new { @class = "control-label" })
+            @Html.TextBox("txt_password", null, new { @class = "form-control", type = "password" })
+        </div>
+    </div>
+
+
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueUser", "RegisterUser")';
+        var url_delete = '@Url.Action("DeleteUser", "RegisterUser")';
+        var url_save = '@Url.Action("SaveUser", "RegisterUser")';
+        var url_page_click = '@Url.Action("UserPage", "RegisterUser")';
+        var url_filter = '@Url.Action("UserPage", "RegisterUser")';
+        var url_len_page_change = '@Url.Action("UserPage", "RegisterUser")';
+        var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    </script>
+    <script src="~/Scripts/Register/User.js"></script>
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ Name }}</td>
+            <td>{{ Login }}</td>
+            <td>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+}
+

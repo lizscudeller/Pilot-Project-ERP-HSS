@@ -1,0 +1,32 @@
+﻿#grid_register > thead > tr th:nth-child(2) {
+    width: 100px;
+}
+
+#grid_register > thead > tr th:nth-child(3) {
+    width: 80px;
+}
+
+#grid_register > thead > tr th:nth-child(4) {
+    width: 200px;
+}
+
+
+#register {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#grid_register {
+    border-bottom: 1px #dddddd solid;
+}
+
+#register_body {
+    margin-top: 20px;
+}
+
+#head_grid {
+    margin-bottom: 20px;
+}
+#grid_register thead tr th span {
+    cursor: pointer;
+}

@@ -1,0 +1,94 @@
+﻿<div class="row" style="margin-top: 20px">
+    <div class="col-md-4">
+        @Html.Label("ddl_payroll_schedule", "Payroll Schedule", new { @class = "control-label" })
+        @Html.DropDownList("ddl_payroll_schedule", (IEnumerable<SelectListItem>)ViewBag.PayrollFrequency, new { @class = "form-control" })
+    </div>
+
+    <div class="col-md-3" style="margin-top: 20px">
+        <a class="btn btn-primary btn-direct-deposit" role="button"><i class="glyphicon glyphicon-piggy-bank"></i> Direct Deposit</a>
+    </div>
+    <div class="col-md-2" style="margin-top: 20px">
+        <a class="btn btn-primary btn-taxes" role="button"><i class="glyphicon glyphicon-usd"></i> Taxes</a>
+    </div>
+
+    <div class="col-md-3" style="margin-top: 20px">
+        <a class="btn btn-primary btn-sick-vacations" role="button"><i class="glyphicon glyphicon-dashboard"></i> Sick/Vacations</a>
+    </div>
+
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Earnings</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Hoourly/Annual Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="no-border">
+                                    <th scope="row">
+                                        @Html.DropDownList("ddl_payroll_info", (IEnumerable<SelectListItem>)ViewBag.PayrollInfo, new { @class = "form-control" })
+                                    </th>
+                                    <td>
+                                        @Html.TextBox("txt_payroll_info", null, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Additions, Deductions and Company Contributions</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Hoourly/Annual Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        @Html.DropDownList("ddl_payroll_info", (IEnumerable<SelectListItem>)ViewBag.PayrollInfo, new { @class = "form-control" })
+                                    </th>
+                                    <td>
+                                        @Html.TextBox("txt_payroll_info", null, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <style>
+
+        .open ul.dropdown-menu {
+            display: block;
+        }
+    </style>

@@ -1,0 +1,34 @@
+﻿<div class="row"  style="margin-top: 20px">
+    <div class="col-md-12">
+        @Html.Label("txt_account", "Account Number (Employee ID)", new { @class = "control-label" })
+        @Html.TextBox("txt_account", null, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Custom Fields</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("txt_bday", "B-Day", new { @class = "control-label" })
+                        @Html.TextBox("txt_bday", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("txt_last_raise", "Date of Last Raise", new { @class = "control-label" })
+                        @Html.TextBox("txt_last_raise", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_spouse_name", "Spouse's Name", new { @class = "control-label" })
+                        @Html.TextBox("txt_spouse_name", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12" style="margin-top:15px">
+                        <a class="btn btn-primary btn-define-fields" role="button"><i class="glyphicon glyphicon-plus-sign"></i> Define Fields</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

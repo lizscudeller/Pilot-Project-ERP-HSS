@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="id_province" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="entry_product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="number" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="quant" Type="int" Nullable="false" />
+    <Property Name="id_provider" Type="int" />
+    <Property Name="id_user" Type="int" />
+  </EntityType>
+  <EntityType Name="inventory_stock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="storage_quant" Type="int" Nullable="false" />
+    <Property Name="quant_inventory" Type="int" Nullable="false" />
+    <Property Name="reason" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cost_value" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="storage_quant" Type="int" Nullable="false" />
+    <Property Name="id_unit_measure" Type="int" Nullable="false" />
+    <Property Name="id_group" Type="int" Nullable="false" />
+    <Property Name="id_brand" Type="int" Nullable="false" />
+    <Property Name="id_provider" Type="int" Nullable="false" />
+    <Property Name="id_storage_location" Type="int" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="image" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product_brand">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product_group">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product_output">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="number" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="quant" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="provider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="corporate_name" Type="varchar" MaxLength="100" />
+    <Property Name="doc_num" Type="varchar" MaxLength="20" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="contact" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="instruction" Type="varchar" MaxLength="100" />
+    <Property Name="postal_code" Type="varchar" MaxLength="10" />
+    <Property Name="id_country" Type="int" Nullable="false" />
+    <Property Name="id_province" Type="int" Nullable="false" />
+    <Property Name="id_city" Type="int" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="pcode" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="id_country" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role_users">
+    <Key>
+      <PropertyRef Name="id_role" />
+      <PropertyRef Name="id_users" />
+    </Key>
+    <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="id_users" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="storage_location">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="unit_measure">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="initials" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__city__id_provinc__40F9A68C">
+    <End Role="province" Type="Self.province" Multiplicity="1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="province">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="id_province" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entry_pro__id_pr__54CB950F">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="entry_product" Type="Self.entry_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="entry_product">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entry_pro__id_pr__7869D707">
+    <End Role="provider" Type="Self.provider" Multiplicity="0..1" />
+    <End Role="entry_product" Type="Self.entry_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="entry_product">
+        <PropertyRef Name="id_provider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entry_pro__id_us__5B988E2F">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="entry_product" Type="Self.entry_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="entry_product">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__inventory__id_pr__7DCDAAA2">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="inventory_stock" Type="Self.inventory_stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inventory_stock">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__id_bran__1E6F845E">
+    <End Role="product_brand" Type="Self.product_brand" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product_brand">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__id_grou__1C873BEC">
+    <End Role="product_group" Type="Self.product_group" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product_group">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__id_prov__1B9317B3">
+    <End Role="provider" Type="Self.provider" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_provider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__id_stor__1D7B6025">
+    <End Role="storage_location" Type="Self.storage_location" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="storage_location">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_storage_location" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__id_unit__1F63A897">
+    <End Role="unit_measure" Type="Self.unit_measure" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit_measure">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_unit_measure" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product_o__id_pr__67DE6983">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="product_output" Type="Self.product_output" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product_output">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__provider__id_cit__7755B73D">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="provider" Type="Self.provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider">
+        <PropertyRef Name="id_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__provider__id_cou__756D6ECB">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="provider" Type="Self.provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider">
+        <PropertyRef Name="id_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__provider__id_pro__76619304">
+    <End Role="province" Type="Self.province" Multiplicity="1" />
+    <End Role="provider" Type="Self.provider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="province">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider">
+        <PropertyRef Name="id_province" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__province__id_cou__3E1D39E1">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="province" Type="Self.province" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="province">
+        <PropertyRef Name="id_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_role_users_dbo_role_id_role_OLD">
+    <End Role="role" Type="Self.role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="role_users" Type="Self.role_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_users">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_role_users_dbo_user_id_users_OLD">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="role_users" Type="Self.role_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_users">
+        <PropertyRef Name="id_users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="entry_product" EntityType="Self.entry_product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inventory_stock" EntityType="Self.inventory_stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product_brand" EntityType="Self.product_brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product_group" EntityType="Self.product_group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product_output" EntityType="Self.product_output" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="provider" EntityType="Self.provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role_users" EntityType="Self.role_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="storage_location" EntityType="Self.storage_location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unit_measure" EntityType="Self.unit_measure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__city__id_provinc__40F9A68C" Association="Self.FK__city__id_provinc__40F9A68C">
+      <End Role="province" EntitySet="province" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entry_pro__id_pr__54CB950F" Association="Self.FK__entry_pro__id_pr__54CB950F">
+      <End Role="product" EntitySet="product" />
+      <End Role="entry_product" EntitySet="entry_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entry_pro__id_pr__7869D707" Association="Self.FK__entry_pro__id_pr__7869D707">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="entry_product" EntitySet="entry_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entry_pro__id_us__5B988E2F" Association="Self.FK__entry_pro__id_us__5B988E2F">
+      <End Role="users" EntitySet="users" />
+      <End Role="entry_product" EntitySet="entry_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__inventory__id_pr__7DCDAAA2" Association="Self.FK__inventory__id_pr__7DCDAAA2">
+      <End Role="product" EntitySet="product" />
+      <End Role="inventory_stock" EntitySet="inventory_stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__id_bran__1E6F845E" Association="Self.FK__product__id_bran__1E6F845E">
+      <End Role="product_brand" EntitySet="product_brand" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__id_grou__1C873BEC" Association="Self.FK__product__id_grou__1C873BEC">
+      <End Role="product_group" EntitySet="product_group" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__id_prov__1B9317B3" Association="Self.FK__product__id_prov__1B9317B3">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__id_stor__1D7B6025" Association="Self.FK__product__id_stor__1D7B6025">
+      <End Role="storage_location" EntitySet="storage_location" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__id_unit__1F63A897" Association="Self.FK__product__id_unit__1F63A897">
+      <End Role="unit_measure" EntitySet="unit_measure" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product_o__id_pr__67DE6983" Association="Self.FK__product_o__id_pr__67DE6983">
+      <End Role="product" EntitySet="product" />
+      <End Role="product_output" EntitySet="product_output" />
+    </AssociationSet>
+    <AssociationSet Name="FK__provider__id_cit__7755B73D" Association="Self.FK__provider__id_cit__7755B73D">
+      <End Role="city" EntitySet="city" />
+      <End Role="provider" EntitySet="provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK__provider__id_cou__756D6ECB" Association="Self.FK__provider__id_cou__756D6ECB">
+      <End Role="country" EntitySet="country" />
+      <End Role="provider" EntitySet="provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK__provider__id_pro__76619304" Association="Self.FK__provider__id_pro__76619304">
+      <End Role="province" EntitySet="province" />
+      <End Role="provider" EntitySet="provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK__province__id_cou__3E1D39E1" Association="Self.FK__province__id_cou__3E1D39E1">
+      <End Role="country" EntitySet="country" />
+      <End Role="province" EntitySet="province" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_role_users_dbo_role_id_role_OLD" Association="Self.FK_dbo_role_users_dbo_role_id_role_OLD">
+      <End Role="role" EntitySet="role" />
+      <End Role="role_users" EntitySet="role_users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_role_users_dbo_user_id_users_OLD" Association="Self.FK_dbo_role_users_dbo_user_id_users_OLD">
+      <End Role="users" EntitySet="users" />
+      <End Role="role_users" EntitySet="role_users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

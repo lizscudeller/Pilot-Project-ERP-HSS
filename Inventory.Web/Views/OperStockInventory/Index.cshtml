@@ -1,0 +1,199 @@
+﻿@using Inventory.Web.Models
+@model List<ProductInventoryViewModel>
+@{
+    ViewBag.Title = "MM Stock Inventory";
+}
+
+<style>
+    #grid th:nth-child(1) {
+        width: 50px;
+    }
+
+    #grid th:nth-child(2) {
+        width: 150px;
+    }
+
+    #grid th:nth-child(3) {
+        width: 70px;
+    }
+
+    #grid th:nth-child(4) {
+        width: 150px;
+    }
+
+    #grid th:nth-child(5) {
+        width: 100px;
+    }
+
+    #grid th:nth-child(6) {
+        width: 130px;
+    }
+
+    #grid th:nth-child(7) {
+        width: 100px;
+    }
+
+    #grid th:nth-child(8) {
+        width: auto;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12" style=" margin: 15px">
+        <h3 class="text-center">Stock Inventory / Product Loss</h3>
+        <hr />
+        <div id="msg_message_warning" class="text-danger invisible2"></div><!--ver se eh esse invisivel-->
+        <fieldset>
+            @Html.AntiForgeryToken()
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-md-2">
+                    <a id="btn_add" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i>Add Stock Inventory</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="grid" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Place</th>
+                                <th>Code</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit Measure</th>
+                                <th>Count</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var sequency = 1;}
+                            @foreach (var product in Model)
+                            {
+                                <tr data-id="@product.Id">
+                                    <td>@sequency</td>
+                                    <td>@product.NameStorageLocation</td>
+                                    <td>@product.Code</td>
+                                    <td>@product.NameProduct</td>
+                                    <td>@product.StorageQuant</td>
+                                    <td>@product.NameUnitMeasure</td>
+                                    <td><input type="number" class="form-control" value="" /></td>
+                                    <td><input type="text" class="form-control" value="" /></td>
+                                </tr>
+                                sequency++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a id="btn_save" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Save</a>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Common.js"></script>
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    <script>
+
+        function clear_screen() {
+            $('#grid tbody tr input').each(function (index, input) {
+                $(input).val('');
+            });
+        }
+
+        function check_fill() {
+            var ret = false;
+
+            $('#grid tbody tr input[type=number]').each(function (index, input) {
+                if ($(input).val() != '') {
+                    ret = true;
+                    return false;
+                }
+            });
+            return ret;
+        }
+
+        function get_data_inventory() {
+           var ret = [];
+
+            $('#grid tbody tr').each(function (index, item) {
+                var tr = $(item),
+                    storage_quant = parseInt(tr.find('td').eq(4).text()),
+                    id_product = tr.attr('data-id'),
+                    quant_inventory = parseInt(tr.find('input[type=number]').val()),
+                    reason = tr.find('input[type=text]').val();
+
+                if (quant_inventory > 0) {
+                    ret.push({
+                        IdProduct: id_product,
+                        StorageQuantity: storage_quant,
+                        QuantityInventory: quant_inventory,
+                        Reason: reason
+                    });
+                }
+            });
+            return ret;
+        }
+
+        $(document).ready(function () {
+            clear_screen();
+        })
+            .on('click', '#btn_add', function () {
+
+                if (check_fill()) {
+                    swal({
+                        html: 'Some quantity fields are typed.<br/>Do you really want to clear the screen and start a new inventory?',
+                        type: 'info',
+                        showCancelButton: true,
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        cancelButtonText: 'No',
+                        confirmButtonClass: 'btn-primary',
+                        confirmButtonText: 'Yes'
+                    }).then(function (option) {
+                        if (option.value) {
+                            clear_screen();
+                        }
+                    });
+                }
+                else {
+                    clear_screen();
+                }
+                })
+            .on('click', '#btn_save', function () {
+                if (!check_fill()) {
+                    swal('Warning', 'To save you need to type all quantities','warning')
+                }
+                else {
+                    var url = '@Url.Action("Save", "OperStockInventory")',
+                        data = { data: get_data_inventory() };
+
+                    $.ajax({
+                        type: 'POST',
+                        processData: false,
+                        contentType: 'application/json',
+                        data: JSON.stringify(add_anti_forgery_token(data)),
+                        url: url,
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.OK) {
+                                swal('Success', 'Inventory saved', 'info');
+                                clear_screen();
+                            }
+                            else {
+                                swal('Warning', 'Not possible to save the inventory', 'warning');
+                            }
+                        },
+                        error: function () {
+                            swal('Warning', 'Not possible to save the inventory', 'warning');
+
+                        }
+                    });
+                }
+            });
+    </script>
+}

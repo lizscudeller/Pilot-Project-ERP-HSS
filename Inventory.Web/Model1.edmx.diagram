@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc851ea055a9414092ff66d6a3c451d0" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.city" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.country" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.employee" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.entry_product" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.inventory_stock" Width="1.5" PointX="15" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product" Width="1.5" PointX="12.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product_brand" Width="1.5" PointX="10.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product_group" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product_output" Width="1.5" PointX="18" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.provider" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.province" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.role" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.storage_location" Width="1.5" PointX="10.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.unit_measure" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.users" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__city__id_provinc__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__provider__id_cit__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__provider__id_cou__756D6ECB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__province__id_cou__3E1D39E1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__entry_pro__id_pr__54CB950F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__entry_pro__id_pr__7869D707" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__inventory__id_pr__7DCDAAA2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product__id_bran__1E6F845E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product__id_grou__1C873BEC" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product__id_prov__1B9317B3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product__id_stor__1D7B6025" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product__id_unit__1F63A897" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product_o__id_pr__67DE6983" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__product_o__id_pr__407A839F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__provider__id_pro__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.role_users" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.role_users1" />
+        <AssociationConnector Association="Model.role_users2" />
+        <AssociationConnector Association="Model.role_users3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

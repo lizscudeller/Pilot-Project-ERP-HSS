@@ -1,0 +1,95 @@
+﻿
+<div class="row" style="margin-top: 20px">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Employment Dates</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_hire_date", "Hire Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_hire_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_original_hire_date", "Original Hire Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_original_hire_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_adjusted_service_date", "Adjusted Service Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_adjusted_service_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_released_date", "Released Date (last date on payroll)", new { @class = "control-label" })
+                        @Html.TextBox("txt_released_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_postal_code", "Postal Code", new { @class = "control-label" })
+                        @Html.TextBox("txt_postal_code", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Job Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_title", "Title", new { @class = "control-label" })
+                        @Html.TextBox("txt_title", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_supervisor", "Supervisor", new { @class = "control-label" })
+                        @Html.TextBox("txt_supervisor", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_department", "Department", new { @class = "control-label" })
+                        @Html.TextBox("txt_department", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_description", "Description", new { @class = "control-label" })
+                        @Html.TextArea("txt_description", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_target_bonus", "Target Bonus", new { @class = "control-label" })
+                        @Html.TextBox("txt_target_bonus", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Employment  Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("txt_employment_type", "Employment Type", new { @class = "control-label" })
+                        @Html.TextBox("txt_employment_type", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("txt_full_part_time", "Full / Part Time", new { @class = "control-label" })
+                        @Html.TextBox("txt_full_part_time", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("txt_seasonal", "Seasonal", new { @class = "control-label" })
+                        @Html.TextBox("txt_seasonal", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("txt_key_employee", "Key Employee", new { @class = "control-label" })
+                        @Html.TextBox("txt_key_employee", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_exempt", "Exempt", new { @class = "control-label" })
+                        @Html.TextArea("txt_exempt", null, new { @class = "form-control" })
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

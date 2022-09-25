@@ -1,0 +1,101 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var list = ViewBag.List;
+    var title = ViewBag.Title;
+
+    ViewBag.Title = "Register " + ViewBag.Title;
+}
+
+@RenderSection("Styles", true)
+@RenderBody()
+
+
+<div id="register">
+    <section id="register_head">
+        <h1>@ViewBag.Title</h1>
+    </section>
+    <section id="register_body">
+
+        <div id="head_grid" class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a id="btn_add" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> Add</a>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownList("ddl_len_page", (SelectList)ViewBag.ListLenPage, new { @class = "selectpicker" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.TextBox("txt_filter", null, new { @class = "form-control", @placeholder = "Search here..." })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="grid_register" class="table table-bordered table-striped table-hover @Html.Raw(list == null || list.Count == 0 ? "invisible": "")">
+                    <thead>
+                        <tr>
+                            @RenderSection("TitleGrid", true)
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="message_grid" @Html.Raw(list != null && list.Count > 0 ? "class=\"invisible\"" : "")>
+                    No entries for @title
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.QuantPages > 1)
+        {
+
+            <div class="row">
+                <div class="col-md-12">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            @for (int i = 2; i <= ViewBag.QuantPages; i++)
+                            {
+                                <li class="page-item"><a class="page-link" href="#">@i</a></li>
+
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        }
+    </section>
+</div>
+@Html.Hidden("id_register")
+<div id="modal_register" class="invisible2" role="dialog">
+    <div id="msg_message_warning" class="text-danger invisible2"></div>
+    <fieldset>
+        @Html.AntiForgeryToken()
+        @RenderSection("RegisterInputs", true)
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="modal-footer">
+                        <a id="btn_close" class="btn btn-defaut" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</a>
+                        <a id="btn_save" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Save</a>
+                    </div>
+                    <div id="msg_warning" class="alert alert-warning invisible2">Missing fields</div>
+                    <div id="msg_error" class="alert alert-danger invisible2">Error</div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+@section Scripts{
+    <script src="~/Scripts/mustache.min.js"></script>
+    <script src="~/Scripts/Register/RegisterBase.js"></script>
+    @RenderSection("Scripts", true)
+}
+
+

@@ -1,0 +1,100 @@
+﻿@model List<Inventory.Web.Models.RoleViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = " MM Role";
+    ViewBag.List = Model;
+
+
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/Role.css" rel="stylesheet" />
+}
+
+@section TitleGrid{
+    <th>Name</th>
+    <th>Active</th>
+    <th>Action</th>
+}
+
+
+@section RegisterInputs{
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_name", "Name", new { @class = "control-label" })
+            @Html.TextBox("txt_name", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-12">
+            <div class="form-check">
+                @Html.CheckBox("cbx_active", new { @class = "form-check-input" })
+                @Html.Label("cbx_active", "Active", new { @class = "form-check-label" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group" style="margin:0 10px 0 10px">
+            <div class="col-md-12">
+                <h4 class="text-center">Users</h4>
+                <div class="well" style="max-height:300px; padding:5px; margin:0; overflow:auto">
+                    <ul id="list_users" class="list-group checked-list-box" style="margin-bottom: 0">
+                        @foreach (var users in (List<Inventory.Web.Models.UserViewModel>)ViewBag.ListUsers)
+                        {
+                            <li class="list-group-item">
+                                <label style="margin-bottom: 0">
+                                    <input type="checkbox" data-id-users="@users.Id" /> @users.Name
+                                </label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueRole", "RegisterRole")';
+        var url_delete = '@Url.Action("DeleteRole", "RegisterRole")';
+        var url_save = '@Url.Action("SaveRole", "RegisterRole")';
+        var url_page_click = '@Url.Action("RolePage", "RegisterRole")';
+        var url_filter = '@Url.Action("RolePage", "RegisterRole")';
+        var url_len_page_change = '@Url.Action("RolePage", "RegisterRole")';
+         var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    </script>
+    <script src="~/Scripts/Register/Role.js"></script>
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ Name }}</td>
+            <td>{{ #Active }}YES{{ /Active }}{{ ^Active }}NO{{ /Active }}</td>
+            <td>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+}

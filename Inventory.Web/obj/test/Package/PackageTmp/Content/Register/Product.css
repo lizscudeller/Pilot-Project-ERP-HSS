@@ -1,0 +1,36 @@
+﻿#grid_register > thead > tr th:nth-child(1) {
+    width: 100px;
+}
+
+#grid_register > thead > tr th:nth-child(3) {
+    width: 100px;
+}
+
+#grid_register > thead > tr th:nth-child(4) {
+    width: 100px;
+}
+
+#grid_register > thead > tr th:nth-child(5) {
+    width: 250px;
+}
+
+
+#register {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#grid_register {
+    border-bottom: 1px #dddddd solid;
+}
+
+#register_body {
+    margin-top: 20px;
+}
+
+#head_grid {
+    margin-bottom: 20px;
+}
+#modal_image img{ /*FIX SIZE OF PRODUCT IMAGE*/
+    max-width:100%;
+}

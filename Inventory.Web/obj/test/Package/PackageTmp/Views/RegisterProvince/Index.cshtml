@@ -1,0 +1,94 @@
+﻿@model List<Inventory.Web.Models.ProvinceViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = "MM Province";
+    ViewBag.List = Model;
+
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/Province.css" rel="stylesheet" />
+}
+
+@section TitleGrid{
+    <th>Name</th>
+    <th>ProvinceCode</th>
+    <th>Active</th>
+    <th>Action</th>
+}
+
+
+@section RegisterInputs{
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_name", "Name", new { @class = "control-label" })
+            @Html.TextBox("txt_name", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" >
+            @Html.Label("txt_pcode", "ProvinceCode", new { @class = "control-label" })
+            @Html.TextBox("txt_pcode", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("ddl_country", "Country", new { @class = "control-label" })
+            @Html.DropDownList("ddl_country", new SelectList(ViewBag.Countries, "Id", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-12">
+            <div class="form-check">
+                @Html.CheckBox("cbx_active", new { @class = "form-check-input" })
+                @Html.Label("cbx_active", "Active", new { @class = "form-check-label" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueProvince", "RegisterProvince")';
+        var url_delete = '@Url.Action("DeleteProvince", "RegisterProvince")';
+        var url_save = '@Url.Action("SaveProvince", "RegisterProvince")';
+        var url_page_click = '@Url.Action("ProvincePage", "RegisterProvince")';
+        var url_filter = '@Url.Action("ProvincePage", "RegisterProvince")';
+        var url_len_page_change = '@Url.Action("ProvincePage", "RegisterProvince")';
+        var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+
+    </script>
+    <script src="~/Scripts/Register/Province.js"></script>
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ Name }}</td>
+            <td>{{ ProvinceCode }}</td>
+            <td>{{ #Active }}YES{{ /Active }}{{ ^Active }}NO{{ /Active }}</td>
+            <td>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+}

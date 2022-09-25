@@ -1,0 +1,59 @@
+﻿
+<div class="row" style="margin-top: 20px">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Leave Dates</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_leave_start_date", "Start Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_leave_start_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_expect_return_date", "Expect Return Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_expect_return_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_actual_return_date", "Actual Return Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_actual_return_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Leave Pay</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("ddl_leave_pay", "Leave Paid", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_leave_pay", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>                                     
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Leave  Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_type", "Type", new { @class = "control-label" })
+                        @Html.TextBox("txt_type", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_reason", "Reason", new { @class = "control-label" })
+                        @Html.TextBox("txt_reason", null, new { @class = "form-control" })
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

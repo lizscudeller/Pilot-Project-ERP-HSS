@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Web", "Inventory.Web\Inventory.Web.csproj", "{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rotativa", "Rotativa\Rotativa.csproj", "{D93FAA11-31F0-4629-B53C-AA8680283529}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		test|Any CPU = test|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.test|Any CPU.ActiveCfg = test|Any CPU
+		{315DBACE-1BC6-4089-81DB-4C8DA4B3E6EF}.test|Any CPU.Build.0 = test|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.test|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93FAA11-31F0-4629-B53C-AA8680283529}.test|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31A40A01-4920-44FC-A14C-167DC128FE0C}
+	EndGlobalSection
+EndGlobal

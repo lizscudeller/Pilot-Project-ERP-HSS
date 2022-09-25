@@ -1,0 +1,66 @@
+﻿@model List<Inventory.Web.Models.ReportStockPositionViewModel>
+@{
+    Layout = "";
+    //ViewBag.Title = " MM Stock";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <title>MM Report Stock Position</title>
+    @Styles.Render("~/Content/css")
+
+    <style>
+        table th:nth-child(1) {
+            width: 10%;
+        }
+
+        table td:nth-child(1) {
+            text-align: right;
+        }
+
+        table td:nth-child(2) {
+            text-align: left;
+        }
+
+        table th:nth-child(3) {
+            width: 10%;
+        }
+
+        table td:nth-child(3) {
+            text-align: right;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="col-md-12 text-center">
+        <img src="~/Content/Images/logo.png" style="height: 140px" />
+        <h3>Report Stock Position</h3>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        @{ 
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CodeProduct</td>
+                    <td>@item.NameProduct</td>
+                    <td>@item.QuantityProduct</td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
+

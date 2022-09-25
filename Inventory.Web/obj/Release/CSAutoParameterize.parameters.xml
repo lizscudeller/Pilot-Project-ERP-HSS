@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="main-Web.config Connection String" description="main A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="Data Source=DESKTOP-LIZ\SQLEXPRESS;Initial Catalog=stock-control; Integrated Security=SSPI" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='main']/@connectionString" />
+  </parameter>
+  <parameter name="azureconnection-Web.config Connection String" description="azureconnection A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="Server=tcp:homeservicesolutionsdbserver.database.windows.net,1433;Initial Catalog=homeservicesolutions_db;Persist Security Info=False;User ID=lizscudeller;Password=Homeservice2021;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='azureconnection']/@connectionString" />
+  </parameter>
+  <parameter name="canadaconnection-Web.config Connection String" description="canadaconnection A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="[PlaceHolder for connection: ]" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='canadaconnection']/@connectionString" />
+  </parameter>
+  <parameter name="Entities-Web.config Connection String" description="Entities A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="metadata=res://*/Models.hssDataModel.csdl|res://*/Models.hssDataModel.ssdl|res://*/Models.hssDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-LIZ\SQLEXPRESS;initial catalog=stock-control;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Entities']/@connectionString" />
+  </parameter>
+  <parameter name="canandahss-Web.config Connection String" description="canandahss A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="[PlaceHolder for connection: ]" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='canandahss']/@connectionString" />
+  </parameter>
+</parameters>

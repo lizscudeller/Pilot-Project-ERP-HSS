@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="main-Web.config Connection String" description="main A Cadeia de Conexão usada em web.config pelo aplicativo para acessar o banco de dados." defaultValue="Data Source=DESKTOP-LIZ\SQLEXPRESS;Initial Catalog=stock-control; Integrated Security=SSPI" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Projects\ VIsual\ Studio\\Inventory\\Inventory\.Web\\obj\\test\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='main']/@connectionString" />
+  </parameter>
+</parameters>

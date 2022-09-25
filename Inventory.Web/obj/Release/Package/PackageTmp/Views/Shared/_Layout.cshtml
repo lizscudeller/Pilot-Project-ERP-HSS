@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Home Service Solutions - Material Management</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home Service Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse menu_mm">
+
+                @if (Request.IsAuthenticated && ViewBag.Title.Contains("MM"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Register
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Products Group", "Index", "RegisterProductGroup")</li>
+                                <li>@Html.ActionLink("Products Brand", "Index", "RegisterProductBrand")</li>
+                                <li>@Html.ActionLink("Storage Locations", "Index", "RegisterStorageLocation")</li>
+                                <li>@Html.ActionLink("Units of Measure", "Index", "RegisterUnitMeasure")</li>
+                                <li>@Html.ActionLink("Products", "Index", "RegisterProduct")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Country", "Index", "RegisterCountry")</li>
+                                <li>@Html.ActionLink("Province", "Index", "RegisterProvince")</li>
+                                <li>@Html.ActionLink("City", "Index", "RegisterCity")</li>
+                                <li>@Html.ActionLink("Providers", "Index", "RegisterProvider")</li>
+                                @*<li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Register Role", "Index", "RegisterRole")</li>
+                                <li>@Html.ActionLink("Users", "Index", "RegisterUser")</li>*@
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Operations
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Product Entry", "Index", "OperProductEntry")</li>
+                                <li>@Html.ActionLink("Product Output", "Index", "OperProductOutput")</li>
+                                @*<li>@Html.ActionLink("Product Loss", "Index", "OperEntryProductLoss")</li>*@
+                                <li>@Html.ActionLink("Stock Inventory", "Index", "OperStockInventory")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Stock Position", "Index", "ReportStockPosition", null, new { target = "_blank" })</li>
+                                <li>@Html.ActionLink("Resupply", "Filter", "ReportResupply")</li>
+                                <li>@Html.ActionLink("Product Loss", "Index", "OperEntryProductLoss")</li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Graphs
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Monthly Lost Products", "MontlyLostProducts", "Graphs")</li>
+                                <li>@Html.ActionLink("Monthly Entry vs Output", "MontlyEntryOutput", "Graphs")</li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoffForm" }))
+                    {
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Hi @User.Identity.Name
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Change Password", "ChangeUserPassword", "Account")</li>
+                                </ul>
+                            </li>
+
+                            <li><a href="javascript:document.getElementById('logoffForm').submit()">LogOff</a></li>
+                        </ul>
+                    }
+                }
+                else if (Request.IsAuthenticated && ViewBag.Title.Contains("HR"))
+                {
+
+                }
+                else if (Request.IsAuthenticated && ViewBag.Title.Contains("CRM"))
+                {
+
+                }
+                else if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Register
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Register Role", "Index", "RegisterRole")</li>
+                                <li>@Html.ActionLink("Users", "Index", "RegisterUser")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoffForm" }))
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Hi @User.Identity.Name
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Change Password", "ChangeUserPassword", "Account")</li>
+                                </ul>
+                            </li>
+
+                            <li><a href="javascript:document.getElementById('logoffForm').submit()">LogOff</a></li>
+                        </ul>
+                    }
+                }
+
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -  Home Service Solutions</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-02-16T19:39:32.4760548Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-02-16T19:39:56.2562864Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "dbb8a46d-4989-4ce1-bb42-0ccf79b8d3cf"
+    },
+    "mssql1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "CANADA-GROUP"
+    }
+  }
+}

@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "MM Product Entry";
+}
+
+<style>
+    #grid th:nth-child(2) {
+        width: 150px;
+    }
+    #grid th:nth-child(3) {
+        width: 60px;
+    }
+
+    #product_entry .row {
+        margin: 15px 0;
+    }
+</style>
+<div class="row">
+    <div style="margin:15px" class="col-md-12">
+        <div id="product_entry" class="col-md-6 col-md-offset-3">
+            <h3 class="text-center">Product Entry</h3>
+            <hr />
+            <div id="msg_message_warning" class="text-danger invisible"></div>
+            <fieldset>
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("txt_date", "Date", new { @class = "control-label" })
+                        @Html.TextBox("txt_date", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("txt_number", "Number", new { @class = "control-label" })
+                        @Html.TextBox("txt_number", null, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("ddl_provider", "Provider", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_provider", new SelectList(ViewBag.Providers, "Id", "Name"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <a id="btn_add" class="btn btn-success" role="button">
+                            <i class="glyphicon glyphicon-plus"></i>Add Product
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="grid" class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a id="btn_cancel" class="btn btn-default" role="button">
+                            <i class="glyphicon glyphicon-remove"></i> Cancel
+                        </a>
+                        <a id="btn_save" class="btn btn-primary" role="button">
+                            <i class="glyphicon glyphicon-ok"></i> Save
+                        </a>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/mustache.min.js"></script>
+    <script src="~/Scripts/Common.js"></script>
+    <script>
+        var sequence = 1;
+
+        function format_date(date) {
+            var day = ('0' + date.getDate()).slice(-2);
+            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+            return date.getFullYear() + "-" + month + "-" + day;
+        }
+
+        function add_line_product() {
+            $('#grid tbody').append(Mustache.render($('#template-product').html(), { Sequence: sequence }));
+            sequence++;
+        }
+        function empty_screen() {
+            $('#grid tbody').empty();
+            add_line_product();
+        }
+
+        function get_list_entrys() {
+            var ret = [];
+
+            $('#grid tbody tr').each(function (index, item) {
+                var txt_quantity = $(this).find('input'),
+                    ddl_product = $(this).find('select'),
+                    quantity = parseInt(txt_quantity.val()),
+                    product = parseInt(ddl_product.val());
+
+                if (quantity > 0) {
+                    ret.push({ IdProduct: product, Quantity: quantity });
+                }
+            });
+
+            return ret;
+        }
+
+        $(document).ready(function () {
+            var today = new Date();
+            $('#txt_date').val(format_date(today));
+
+            empty_screen();
+        })
+            .on('click', '#btn_add', function () {
+                add_line_product();
+            })
+            .on('click', '#btn_save', function () {
+                var btn = $(this);
+                var list_entry = get_list_entrys();
+
+                if (list_entry.length == 0) {
+                    swal('Warning', 'To save you need to type product`s quantity.', 'warning');
+                }
+                else {
+                    var url = '@Url.Action("Save" , "OperProductEntry")',
+                        data = {
+                            date: $('#txt_date').val(),
+                            products: JSON.stringify(list_entry)
+                        };
+                    $.post(url, add_anti_forgery_token(data), function (response) {
+                        if (response.OK) {
+                            $('#txt_number').val(response.Number);
+                            swal('Success', 'Product Entry Saved!', 'info');
+
+                        }
+                    })
+                        .fail(function () {
+                            swal('Warning', 'Failed saving product entry.', 'warning');
+                        });
+                }
+            })
+            .on('click', '#btn_cancel', function () {
+                var list_entry = get_list_entrys();
+
+                if (list_entry.length == 0) {
+                    empty_screen();
+                }
+                else {
+                    swal({
+                        text: 'Cancel products entry?',
+                        type: 'info',
+                        showCancelButton: true,
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        cancelButtonText: 'No',
+                        confirmButtonClass: 'btn-primary',
+                        confirmButtonText: 'Yes'
+                    }).then(function (option) {
+                        if (option.value) {
+                            empty_screen();
+                        }
+                    })
+                }
+            })
+            .on('click', '.btn_remove', function () {
+                var line = $(this).closest('tr');
+                line.remove();
+            });
+    </script>
+
+    <script id="template-product" type="x-tmpl-mustache">
+        <tr>
+            <td>
+                <select class="form-control" id="ddl_product_{{ Sequence }}">
+                    @foreach (var product in ViewBag.Products)
+                    {
+                        <option value="@product.Id">@product.Name</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <input type="number" id="text_quantity_{{ Sequence }}" class="form-control" value="" />
+            </td>
+            <td>
+                <a class="btn btn-warning btn_remove" role="button">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+
+        </tr>
+    </script>
+}

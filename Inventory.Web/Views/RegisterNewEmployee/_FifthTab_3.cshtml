@@ -1,0 +1,71 @@
+﻿
+<div class="row" style="margin-top: 20px">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Termination Dates</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_last_day_worked", "Last Day Worked", new { @class = "control-label" })
+                        @Html.TextBox("txt_last_day_worked", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_last_day_benefits", "Last Day on Benefits", new { @class = "control-label" })
+                        @Html.TextBox("txt_last_day_benefits", null, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_release_date", "Release Date (Last Day on Payroll)", new { @class = "control-label" })
+                        @Html.TextBox("txt_release_date", null, new { @class = "form-control", type = "date" })
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Severance Pay</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("ddl_severance_pay", "Severance Paid", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_severance_pay", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_severance_pay", "", new { @class = "control-label" })
+                        @Html.TextBox("txt_severance_pay", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Termination Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Label("txt_termination_type", "Termination Type", new { @class = "control-label" })
+                        @Html.TextBox("txt_termination_type", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.Label("txt_termination_reason", "Termination Reason", new { @class = "control-label" })
+                        @Html.TextBox("txt_termination_reason", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("ddl_recommend_rehire", "Recommend Rehire", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_recommend_rehire", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("ddl_protest_unemployment", "Protest Unemployment", new { @class = "control-label" })
+                        @Html.DropDownList("ddl_protest_unemployment", (IEnumerable<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

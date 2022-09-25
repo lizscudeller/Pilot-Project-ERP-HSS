@@ -1,0 +1,173 @@
+﻿@model List<Inventory.Web.Models.ProductViewModel>
+@{
+    Layout = "~/Views/Shared/_Register.cshtml";
+    ViewBag.Title = "MM Product";
+    ViewBag.List = Model;
+
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Register/Product.css" rel="stylesheet" />
+    <style>
+        .dialog > .modal-dialog {
+            width: 700px !important;
+        }
+    </style>
+}
+
+@section TitleGrid{
+    <th>Code</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Active</th>
+    <th>Action</th>
+}
+
+
+@section RegisterInputs{
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("txt_code", "Code", new { @class = "control-label" })
+            @Html.TextBox("txt_code", null, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-8">
+            @Html.Label("txt_name", "Name", new { @class = "control-label" })
+            @Html.TextBox("txt_name", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("txt_cost_value", "Cost Value", new { @class = "control-label" })
+            @Html.TextBox("txt_cost_value", null, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("txt_price", "Price", new { @class = "control-label" })
+            @Html.TextBox("txt_price", null, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.Label("txt_storage_quant", "Storage Quantity", new { @class = "control-label" })
+            @Html.TextBox("txt_storage_quant", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("ddl_unit_measure", "Unit Measure", new { @class = "control-label" })
+            @Html.DropDownList("ddl_unit_measure", new SelectList(ViewBag.UnitsMeasure, "Id", "Name"), new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-8">
+            @Html.Label("ddl_group", "Group", new { @class = "control-label" })
+            @Html.DropDownList("ddl_group", new SelectList(ViewBag.Groups, "Id", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("ddl_brand", "Brand", new { @class = "control-label" })
+            @Html.DropDownList("ddl_brand", new SelectList(ViewBag.Brands, "Id", "Name"), new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-8">
+            @Html.Label("ddl_provider", "Provider", new { @class = "control-label" })
+            @Html.DropDownList("ddl_provider", new SelectList(ViewBag.Providers, "Id", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("ddl_storage_location", "Storage Location", new { @class = "control-label" })
+            @Html.DropDownList("ddl_storage_location", new SelectList(ViewBag.StorageLocations, "Id", "Name"), new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-8">
+            <div class="form-check" style="line-height: 6em; margin-bottom: -2em">
+                @Html.CheckBox("cbx_active", new { @class = "form-check-input" })
+                @Html.Label("cbx_active", "Active", new { @class = "form-check-label" })
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_image", "Image", new { @class = "control-label" })
+            @Html.TextBox("txt_image", null, new { @class = "form-control", type = "file", accept = "image/jpg, image/jpeg" })
+        </div>
+
+    </div>
+    <div id="modal_image" class="invisible2" role="dialog">
+
+    </div>
+
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+
+    <script>
+        var page_title = '@ViewBag.Title';
+        var url_edit = '@Url.Action("RescueProduct", "RegisterProduct")';
+        var url_delete = '@Url.Action("DeleteProduct", "RegisterProduct")';
+        var url_save = '@Url.Action("SaveProduct", "RegisterProduct")';
+        var url_page_click = '@Url.Action("ProductPage", "RegisterProduct")';
+        var url_filter = '@Url.Action("ProductPage", "RegisterProduct")';
+        var url_len_page_change = '@Url.Action("ProductPage", "RegisterProduct")';
+        var liness = [];
+
+    @{
+        var lines = 0;
+        foreach (var item in Model)
+        {
+            lines++;
+            if (lines <= ViewBag.QuantMaxLinesPerPage)
+            {
+                     @:liness.push(@Html.Raw(Json.Encode(item)));
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    </script>
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}" data-image="{{ Image }}">
+            <td>{{ Code }}</td>
+            <td>{{ Name }}</td>
+            <td>{{ StorageQuant }}</td>
+            <td>{{ #Active }}YES{{ /Active }}{{ ^Active }}NO{{ /Active }}</td>
+            <td>
+                <a class="btn btn-default btn-show-image" role="button"><i class="glyphicon glyphicon-picture"></i></a>
+                <a class="btn btn-primary btn-edit" role="button"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                <a class="btn btn-danger btn-delete" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            </td>
+        </tr>
+    </script>
+
+    <script id="template-image" type="x-template-mustache">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/Content/Images/{{ Image }}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <a id="btn_exit_image" class="btn btn-default" role="button" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </script>
+    <script src="~/Scripts/Register/Product.js"></script>
+}

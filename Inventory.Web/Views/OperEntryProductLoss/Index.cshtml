@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "MM Product Loss";
+}
+
+<style>
+    #grid th:nth-child(1) {
+        width: 50px;
+    }
+
+    #grid th:nth-child(2) {
+        width: 200px;
+    }
+
+    #grid th:nth-child(3) {
+        width: 130px;
+    }
+
+    #grid th:nth-child(4) {
+        width: 130px;
+    }
+
+    #grid th:nth-child(5) {
+        width: auto;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12" style=" margin: 15px">
+        <h3 class="text-center">Product Loss</h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-4" style="margin-bottom:15px">
+                @Html.DropDownList("ddl_inventory", new SelectList(ViewBag.Inventories, "Id", "Name"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div id="msg_message_warning" class="text-danger invisible2"></div><!--ver se eh esse invisivel-->
+        <fieldset>
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="grid" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Count</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    @*<a id="btn_save" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Save</a>*@
+                    <a id="btnShow" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-forward"></i>Show Report</a>
+
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Common.js"></script>
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    <script src="~/Scripts/mustache.min.js"></script>
+
+    <script id="template-grid" type="x-template-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ CodeProduct }}</td>
+            <td>{{ NameProduct }}</td>
+            <td>{{ StorageQuantity }}</td>
+            <td>{{ QuantityInventory }}</td>
+            @*<td><input type="text" class="form-control" value="{{ Reason }}" /></td>*@
+            <td>{{ Reason }}</td>
+
+        </tr>
+    </script>
+
+    <script>
+        function fill_screen() {
+
+
+                var id_inventory = $('#ddl_inventory').val(),
+                    url = '@Url.Action("RescueProductListWithInventoryDifference","OperEntryProductLoss")?inventory=' + id_inventory,
+                    grid = $('#grid').find('tbody');
+
+                grid.empty();
+
+                $.ajax({
+                    type: 'GET',
+                    processData: false,
+                    url: url,
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response) {
+                            for (var i = 0; i < response.length; i++) {
+                                grid.append(add_line_grid(response[i]));
+                            }
+                        }
+                        else {
+                            swal('Warning', 'Not possible to rescue products from inventory', 'warning');
+                        }
+                    },
+                    error: function () {
+                        swal('Warning', 'Not possible to rescue products from inventory', 'warning');
+                    }
+                });
+        }
+
+        function add_line_grid(data) {
+            var template = $('#template-grid').html();
+            return Mustache.render(template, data);
+        }
+
+        function get_data() {
+            var ret = [];
+
+            $('#grid tbody tr').each(function (index, item) {
+                var tr = $(item),
+                    id = tr.attr('data-id'),
+                    reason = tr.find('input[type=text]').val();
+
+                if (reason != '') {
+                    ret.push({ Id: id, Reason: reason });
+                }
+            });
+
+            return ret;
+        }
+
+        function verify_fill() {
+            var ret = false;
+
+            $('#grid tbody tr input[type=text]').each(function (index, item) {
+                if ($(item).val() != '') {
+                    ret = true;
+                    return false;
+                }
+            });
+
+            return ret;
+        }
+
+        $(document)
+            .ready(function () {
+                fill_screen();
+            })
+            .on('change', '#ddl_inventory', function () {
+                fill_screen();
+            })
+            .on('click', '#btn_save', function () {
+
+                if (!verify_fill()) {
+                    swal('Warning', 'To save you must fill the reason', 'warning');
+                }
+                else {
+                    var url = '@Url.Action("Savee", "OperEntryProductLoss")',
+                        data = { data: get_data() };
+
+                    $.ajax({
+                        type: 'POST',
+                        processData: false,
+                        contentType: 'application/json',
+                        data: JSON.stringify(add_anti_forgery_token(data)),
+                        url: url,
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response) {
+                                swal('Success', 'Product loss saved', 'info');
+                            }
+                            else {
+                                swal('Warning', 'Not possible to save products loss', 'warning');
+                            }
+                        },
+                        error: function () {
+                            swal('Warning', 'Not possible to save products loss', 'warning');
+                        }
+                    });
+                }
+
+            });
+        $(document)
+            .on('click', '#btnShow', function () {
+                var urlReport = '@Url.Action("Index", "ReportProductLoss")';
+                window.open(urlReport, '_blank');
+
+            });
+    </script>
+}
